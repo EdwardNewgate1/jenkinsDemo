@@ -4,7 +4,7 @@ spring:
   application:
     name: SwaggerBootstrapUi-Demo
 swagger:
-  markdowns: classpath:markdown/*
+#  markdowns: classpath:markdown/*
   basic:
     enable: false
     username: zhangsan
