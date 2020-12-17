@@ -46,52 +46,57 @@ public class SwaggerConfiguration {
         this.typeResolver = typeResolver;
     }
 
-   /* @Bean
-    public UiConfiguration uiConfiguration(){
-        return UiConfigurationBuilder.builder().supportedSubmitMethods(new String[]{"get"})
-                .displayOperationId(true)
-                .build();
-    }*/
-   @Bean(value = "defaultApix")
-   public Docket defaultApixx() {
-       ParameterBuilder parameterBuilder=new ParameterBuilder();
-       List<Parameter> parameters= Lists.newArrayList();
+    /* @Bean
+     public UiConfiguration uiConfiguration(){
+         return UiConfigurationBuilder.builder().supportedSubmitMethods(new String[]{"get"})
+                 .displayOperationId(true)
+                 .build();
+     }*/
+    @Bean(value = "defaultApix")
+    public Docket defaultApixx() {
+        ParameterBuilder parameterBuilder = new ParameterBuilder();
+        List<Parameter> parameters = Lists.newArrayList();
 
-       Docket docket=new Docket(DocumentationType.SWAGGER_2)
-               .apiInfo(apiInfo())
-               .groupName("默认接口-swaggermodels")
-               .select()
-               .apis(RequestHandlerSelectors.basePackage("com.swagger.bootstrap.ui.demo.x200"))
-               //.apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
-               .paths(PathSelectors.any())
-               .build().extensions(Lists.newArrayList(new OrderExtensions(1))).globalOperationParameters(parameters)
-               .securityContexts(Lists.newArrayList(securityContext())).securitySchemes(Lists.<SecurityScheme>newArrayList(apiKey()));
-       return docket;
-   }
+        Docket docket = new Docket(DocumentationType.SWAGGER_2)
+                .apiInfo(apiInfo())
+                .groupName("默认接口-swaggermodels")
+                .select()
+                .apis(RequestHandlerSelectors.basePackage("com.swagger.bootstrap.ui.demo.x200"))
+                //.apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
+                .paths(PathSelectors.any())
+                .build()
+//                .extensions(Lists.newArrayList(new OrderExtensions(1)))
+                .globalOperationParameters(parameters)
+                .securityContexts(Lists.newArrayList(securityContext())).securitySchemes(Lists.<SecurityScheme>newArrayList(apiKey()));
+        return docket;
+    }
 
     @Bean(value = "defaultApi")
     public Docket defaultApi() {
-        ParameterBuilder parameterBuilder=new ParameterBuilder();
-        List<Parameter> parameters= Lists.newArrayList();
+        ParameterBuilder parameterBuilder = new ParameterBuilder();
+        List<Parameter> parameters = Lists.newArrayList();
         parameterBuilder.name("token").description("token令牌").modelRef(new ModelRef("String"))
                 .parameterType("header")
                 .required(true).build();
         parameters.add(parameterBuilder.build());
 
-        Docket docket=new Docket(DocumentationType.SWAGGER_2)
+        Docket docket = new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .groupName("默认接口")
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.swagger.bootstrap.ui.demo.controller"))
                 //.apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
                 .paths(PathSelectors.any())
-                .build().extensions(Lists.newArrayList(new OrderExtensions(1))).globalOperationParameters(parameters)
+                .build()
+//                .extensions(Lists.newArrayList(new OrderExtensions(1)))
+                .globalOperationParameters(parameters)
                 .securityContexts(Lists.newArrayList(securityContext())).securitySchemes(Lists.<SecurityScheme>newArrayList(apiKey()));
         return docket;
     }
+
     @Bean(value = "groupRestApi")
     public Docket groupRestApi() {
-        List<ResolvedType> list=Lists.newArrayList();
+        List<ResolvedType> list = Lists.newArrayList();
 
         //SpringAddtionalModel springAddtionalModel= springAddtionalModelService.scan("com.swagger.bootstrap.ui.demo.extend");
         return new Docket(DocumentationType.SWAGGER_2)
@@ -101,11 +106,14 @@ public class SwaggerConfiguration {
                 .apis(RequestHandlerSelectors.basePackage("com.swagger.bootstrap.ui.demo.x180"))
                 .paths(PathSelectors.any())
                 .build()
-                .additionalModels(typeResolver.resolve(DeveloperApiInfo.class)).extensions(Lists.newArrayList(new OrderExtensions(2))).securityContexts(Lists.newArrayList(securityContext(),securityContext1())).securitySchemes(Lists.<SecurityScheme>newArrayList(apiKey(),apiKey1()));
+                .additionalModels(typeResolver.resolve(DeveloperApiInfo.class))
+//                .extensions(Lists.newArrayList(new OrderExtensions(2)))
+                .securityContexts(Lists.newArrayList(securityContext(), securityContext1())).securitySchemes(Lists.<SecurityScheme>newArrayList(apiKey(), apiKey1()));
     }
+
     @Bean(value = "groupRestApi1")
     public Docket groupRestApi1() {
-        List<ResolvedType> list=Lists.newArrayList();
+        List<ResolvedType> list = Lists.newArrayList();
 
         //SpringAddtionalModel springAddtionalModel= springAddtionalModelService.scan("com.swagger.bootstrap.ui.demo.extend");
         return new Docket(DocumentationType.SWAGGER_2)
@@ -115,13 +123,16 @@ public class SwaggerConfiguration {
                 .apis(RequestHandlerSelectors.basePackage("com.swagger.bootstrap.ui.demo.x190"))
                 .paths(PathSelectors.any())
                 .build()
-                .additionalModels(typeResolver.resolve(DeveloperApiInfo.class)).extensions(Lists.newArrayList(new OrderExtensions(2))).securityContexts(Lists.newArrayList(securityContext(),securityContext1())).securitySchemes(Lists.<SecurityScheme>newArrayList(apiKey(),apiKey1()));
+                .additionalModels(typeResolver.resolve(DeveloperApiInfo.class))
+//                .extensions(Lists.newArrayList(new OrderExtensions(2)))
+                .securityContexts(Lists.newArrayList(securityContext(), securityContext1())).securitySchemes(Lists.<SecurityScheme>newArrayList(apiKey(), apiKey1()));
     }
-    private ApiInfo groupApiInfo(){
-        DeveloperApiInfoExtension apiInfoExtension=new DeveloperApiInfoExtension();
 
-        apiInfoExtension.addDeveloper(new DeveloperApiInfo("张三","zhangsan@163.com","Java"))
-        .addDeveloper(new DeveloperApiInfo("李四","lisi@163.com","Java"));
+    private ApiInfo groupApiInfo() {
+        DeveloperApiInfoExtension apiInfoExtension = new DeveloperApiInfoExtension();
+
+        apiInfoExtension.addDeveloper(new DeveloperApiInfo("张三", "zhangsan@163.com", "Java"))
+                .addDeveloper(new DeveloperApiInfo("李四", "lisi@163.com", "Java"));
 
 
         return new ApiInfoBuilder()
@@ -130,7 +141,7 @@ public class SwaggerConfiguration {
                 .termsOfServiceUrl("http://www.group.com/")
                 .contact("group@qq.com")
                 .version("1.0")
-                .extensions(Lists.newArrayList(apiInfoExtension))
+//                .extensions(Lists.newArrayList(apiInfoExtension))
                 .build();
     }
 
@@ -148,6 +159,7 @@ public class SwaggerConfiguration {
         //HttpHeaders.AUTHORIZATION
         return new ApiKey("BearerToken", "Authorization", "header");
     }
+
     private ApiKey apiKey1() {
         return new ApiKey("BearerToken1", "Authorization-c", "header");
     }
@@ -158,6 +170,7 @@ public class SwaggerConfiguration {
                 .forPaths(PathSelectors.regex("/.*"))
                 .build();
     }
+
     private SecurityContext securityContext1() {
         return SecurityContext.builder()
                 .securityReferences(defaultAuth1())
@@ -171,6 +184,7 @@ public class SwaggerConfiguration {
         authorizationScopes[0] = authorizationScope;
         return Lists.newArrayList(new SecurityReference("BearerToken", authorizationScopes));
     }
+
     List<SecurityReference> defaultAuth1() {
         AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");
         AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
