@@ -27,9 +27,9 @@ public class DeamThread extends Thread {
 
     }
 
-    public static void main(String[] args) {
-        DeamThread d=new DeamThread();
-        d.setDaemon(true);
-        d.start();
-    }
+//    public static void main(String[] args) {
+//        DeamThread d=new DeamThread();
+//        d.setDaemon(true);
+//        d.start();
+//    }
 }

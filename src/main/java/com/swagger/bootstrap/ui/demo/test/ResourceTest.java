@@ -19,14 +19,14 @@ import java.util.Set;
  */
 public class ResourceTest {
 
-    public static void main(String[] args) {
-        ResourceUtil ru=new ResourceUtil();
-        ru.find("com.swagger.bootstrap.ui.demo.domain.old","cn.hutool.aop");
-        Set<Class<?>> s= ru.getClasses();
-        System.out.println("--------------------------------------");
-        for (Class<?> clazz:s){
-            System.out.println(clazz.getName());
-        }
-
-    }
+//    public static void main(String[] args) {
+//        ResourceUtil ru=new ResourceUtil();
+//        ru.find("com.swagger.bootstrap.ui.demo.domain.old","cn.hutool.aop");
+//        Set<Class<?>> s= ru.getClasses();
+//        System.out.println("--------------------------------------");
+//        for (Class<?> clazz:s){
+//            System.out.println(clazz.getName());
+//        }
+//
+//    }
 }

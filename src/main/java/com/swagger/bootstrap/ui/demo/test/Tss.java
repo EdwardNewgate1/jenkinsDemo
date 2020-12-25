@@ -19,17 +19,17 @@ import java.util.concurrent.TimeUnit;
  */
 public class Tss {
 
-    public static void main(String[] args) {
-        ExecutorService service= Executors.newFixedThreadPool(10);
-        while (true){
-            try{
-                for (int i=0;i<50;i++){
-                    service.submit(new MyThread(i));
-                }
-                TimeUnit.SECONDS.sleep(200);
-            }catch (Exception e){
-
-            }
-        }
-    }
+//    public static void main(String[] args) {
+//        ExecutorService service= Executors.newFixedThreadPool(10);
+//        while (true){
+//            try{
+//                for (int i=0;i<50;i++){
+//                    service.submit(new MyThread(i));
+//                }
+//                TimeUnit.SECONDS.sleep(200);
+//            }catch (Exception e){
+//
+//            }
+//        }
+//    }
 }

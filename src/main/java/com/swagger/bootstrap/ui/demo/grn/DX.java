@@ -15,8 +15,8 @@ package com.swagger.bootstrap.ui.demo.grn;
  */
 public class DX {
 
-    public static void main(String[] args) {
-        String basePath="com.swagger.bootstrap.ui.demo.extend";
-        System.out.println(basePath.replace('.','/'));
-    }
+//    public static void main(String[] args) {
+//        String basePath="com.swagger.bootstrap.ui.demo.extend";
+//        System.out.println(basePath.replace('.','/'));
+//    }
 }
